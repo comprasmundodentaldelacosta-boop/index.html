@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti ❤️</title>
+
+<!-- 🔤 Fuente legible -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: black;
+  color: white;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* 🌌 INTRO */
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#intro h1 {
+  font-size: 2.5em;
+}
+
+#intro button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  color: black;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#intro button:hover {
+  transform: scale(1.1);
+}
+
+/* 💌 SOBRE */
+#sobre {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  animation: zoomIn 2s ease;
+}
+
+#sobre img {
+  width: 180px;
+  animation: pulse 1.8s infinite;
+  filter: drop-shadow(0 0 10px white);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* 💌 CARTA */
+#carta {
+  display: none;
+  position: relative;
+  z-index: 5;
+  padding: 50px 20px;
+  animation: fadeIn 2s ease;
+}
+
+/* 🌌 estrellas */
+.stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-10px); }
+  to { transform: translateY(100vh); }
+}
+
+/* ❤️ corazones */
+.heart {
+  position: fixed;
+  color: red;
+  font-size: 20px;
+  animation: floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* 📖 texto */
+p {
+  font-size: 1.4em;
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-weight: 300;
+}
+
+/* ✨ animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 música romántica -->
+<audio id="musica" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a0c6a7.mp3?filename=romantic-piano-ambient-110397.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🌌 INTRO -->
+<div id="intro">
+  <h1>💌 Tienes un mensaje especial…</h1>
+  <button onclick="abrir()">Abrir ❤️</button>
+</div>
+
+<!-- 💌 SOBRE -->
+<div id="sobre">
+  <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="sobre">
+</div>
+
+<!-- 💌 CARTA -->
+<div id="carta">
+  <h1>Para la mujer de mi vida ❤️</h1>
+  <p id="texto-carta"></p>
+</div>
+
+<!-- ✨ estrellas -->
+<div class="stars" id="stars"></div>
+
+<script>
+
+/* ✍️ efecto máquina de escribir */
+function escribirTexto(texto, elementoId, velocidad = 50) {
+  let i = 0;
+  const elemento = document.getElementById(elementoId);
+  elemento.innerHTML = "";
+
+  function escribir() {
+    if (i < texto.length) {
+      elemento.innerHTML += texto.charAt(i);
+      i++;
+      setTimeout(escribir, velocidad);
+    }
+  }
+
+  escribir();
+}
+
+/* 🚀 flujo principal */
+function abrir() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("sobre").style.display = "flex";
+
+  setTimeout(() => {
+    document.getElementById("sobre").style.display = "none";
+    document.getElementById("carta").style.display = "block";
+
+    generarCorazones();
+
+    // 🎵 música empieza cuando inicia la escritura
+    const audio = document.getElementById("musica");
+    audio.volume = 0.4;
+    audio.play().catch(() => {
+      console.log("Autoplay bloqueado, se activa con interacción.");
+    });
+
+    const mensaje = `Amor mío…
+
+Hoy no es un día cualquiera… hoy quiero recordarte lo importante que eres en mi vida y en la familia que estamos construyendo juntos.
+
+Eres mi compañera, mi paz y mi hogar. Pero sobre todo, eres la mujer que le da sentido a todo lo que soy y a todo lo que quiero ser.
+
+Gracias por caminar a mi lado, por tu amor incondicional y por el regalo más hermoso de todos: nuestra hija ❤️
+
+Verte como madre me hace amarte aún más. La forma en que cuidas, amas y entregas tu vida por ella es la prueba más pura del amor verdadero.
+
+Prometo estar contigo en cada paso, en cada sueño y en cada batalla. No solo como tu pareja, sino como tu equipo, tu apoyo y tu hogar.
+
+Te amo hoy, te amaré mañana y te elegiré en cada vida que exista ❤️`;
+
+    escribirTexto(mensaje, "texto-carta", 50);
+
+  }, 2500);
+}
+
+/* 🌌 estrellas */
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 100; i++) {
+  let s = document.createElement("div");
+  s.className = "star";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.top = Math.random() * 100 + "vh";
+  s.style.animationDuration = (Math.random() * 5 + 3) + "s";
+  stars.appendChild(s);
+}
+
+/* ❤️ corazones flotantes */
+function generarCorazones() {
+  setInterval(() => {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(h);
+
+    setTimeout(() => {
+      h.remove();
+    }, 5000);
+  }, 400);
+}
+
+</script>
+
+</body>
+</html>
